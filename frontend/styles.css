@@ -1,3 +1,10 @@
+.logincontainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 75vh;
+}
+
 p {
     font-size: 20px;
 }
@@ -19,13 +26,15 @@ p {
     text-align: center;
 }
 
-.signuppagebox input, .signuppagebox input:focus {
+.logincredentials input, .signuppagebox input:focus, 
+.signuppagebox input{
     padding: 10px 20px;
     border: 0;
     outline: none;
     border-bottom: 1px solid black;
 }
 
+.logincredentials button,
 .signuppagebox button, .homepageoptions button {
     border-radius: 0.5em;
     padding: 10px 20px;
@@ -36,6 +45,9 @@ p {
 }
 
 
+.logincredentials button:hover {
+    opacity: 1;
+}
 
 .signuppagebox button:hover, .homepageoptions button:hover {
     opacity: 1;
@@ -85,7 +97,7 @@ p {
     display: flex;
     justify-content: space-around;
     align-items: center;
-
+}
 .signuppagebox button:hover {
     opacity: 1;
 
