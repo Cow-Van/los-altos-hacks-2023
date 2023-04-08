@@ -36,6 +36,7 @@ p {
 }
 
 
+
 .signuppagebox button:hover, .homepageoptions button:hover {
     opacity: 1;
     cursor: pointer;
@@ -84,5 +85,9 @@ p {
     display: flex;
     justify-content: space-around;
     align-items: center;
+
+.signuppagebox button:hover {
+    opacity: 1;
+
 }
 
