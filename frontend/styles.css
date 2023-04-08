@@ -1,0 +1,88 @@
+p {
+    font-size: 20px;
+}
+
+.signuppagecontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.signuppagebox {
+    height: 60%;
+    width: 70vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+.signuppagebox input, .signuppagebox input:focus {
+    padding: 10px 20px;
+    border: 0;
+    outline: none;
+    border-bottom: 1px solid black;
+}
+
+.signuppagebox button, .homepageoptions button {
+    border-radius: 0.5em;
+    padding: 10px 20px;
+    background-color: #3CB371;
+    transition: 0.3s;
+    opacity: 0.8;
+    border: 0.5px solid gray;
+}
+
+
+.signuppagebox button:hover, .homepageoptions button:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+/* Home Page  */
+
+.homepagecontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.homepagebox {
+    height: 60%;
+    width: 110%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+}
+
+.homepageoptions button {
+    background-color:aquamarine;
+    padding: 20px 40px;
+}
+  .homepageheadings p, .homepageoptions button {
+    animation: slideIn 2s ease-in-out forwards;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateY(-50%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0%);
+      opacity: 1;
+    }
+  }
+
+.homepageoptions {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
