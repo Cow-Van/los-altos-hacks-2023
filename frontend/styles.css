@@ -12,6 +12,7 @@
     justify-content: space-around;
     align-items: center;
 }
+
 p {
     font-size: 20px;
 }
@@ -42,7 +43,7 @@ p {
 }
 
 .logincredentials button,
-.signuppagebox button, .homepageoptions button {
+.signuppagebox button {
     border-radius: 0.5em;
     padding: 10px 20px;
     background-color: #3CB371;
@@ -52,11 +53,7 @@ p {
 }
 
 
-.logincredentials button:hover {
-    opacity: 1;
-}
-
-.signuppagebox button:hover, .homepageoptions button:hover {
+.signuppagebox button:hover, .logincredentials button:hover {
     opacity: 1;
     cursor: pointer;
 }
@@ -81,10 +78,20 @@ p {
 }
 
 .homepageoptions button {
-    background-color:aquamarine;
+    background-color: #3CB371;
     padding: 20px 40px;
+    border-radius: 0.5em;
+    transition: 0.3s;
+    opacity: 0.8;
+    border: 0.5px solid gray;
 }
-  .homepageheadings p, .homepageoptions button {
+
+.homepageoptions button:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+   .slideIn {
     animation: slideIn 2s ease-in-out forwards;
   }
   
@@ -107,6 +114,5 @@ p {
 }
 .signuppagebox button:hover {
     opacity: 1;
-
 }
 
