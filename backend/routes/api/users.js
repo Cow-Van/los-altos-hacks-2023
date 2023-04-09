@@ -14,6 +14,7 @@ router.get("/:id", async (req, res) => {
         const user = await getUser(id);
         return res.status(200).json({ user });
     } catch (e) {
+        console.error(e.stack);
         switch (e.name) {
             case "UserNotFoundError":
                 res.status(404);

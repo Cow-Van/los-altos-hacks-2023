@@ -24,6 +24,7 @@ router.get("/", async (req, res) => {
 
         return res.status(200).json(await getUser(accessToken.user));
     } catch (e) {
+        console.error(e.stack);
         return res.status(500).json({ description: e.message });
     }
 });

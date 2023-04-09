@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
 
     const oldAccessToken = await getAccessTokenByRefreshToken(oldRefreshToken);
 
-    if (!(await isAccessTokenValid(oldAccessToken.token))) {
+    if (!oldAccessToken || !(await isAccessTokenValid(oldAccessToken.token))) {
         return res.status(401).send({ description: "Access token invalid" });
     }
 
