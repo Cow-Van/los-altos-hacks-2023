@@ -255,7 +255,7 @@ p {
     align-items: center;
 }
 
-.addremindersbottom button, .addcontainer button {
+.addremindersbottom button, .add button {
     border: none;
      background-color: #3CB371;
     padding: 10px 20px;
@@ -265,7 +265,7 @@ p {
     opacity: 0.8;
 }
 
-.addremindersbottom button:hover, .addcontainer button:hover {
+.addremindersbottom button:hover, .add button:hover {
     opacity: 1;
     cursor: pointer;
 }
