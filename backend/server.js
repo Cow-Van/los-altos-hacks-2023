@@ -6,7 +6,11 @@ const fs = require("fs");
 const http = require("http");
 const https = require("https");
 const path = require("path");
-const middleware = require("./middleware");
+const mongoose = require("mongoose");
+
+const middleware = require("./util/middleware");
+const loginRoutes = require("./routes/login");
+const signupRoutes = require("./routes/signup");
 /* ------------------- IMPORTS END ------------------- */
 
 /* ------------------- CONSTANTS ------------------- */
@@ -19,23 +23,45 @@ const credentials = { key: privateKey, cert: certificate };
 const httpServer = http.createServer(expressServer);
 const httpsServer = https.createServer(credentials, expressServer);
 /* ------------------- CONSTANTS END ------------------- */
+
+/* ------------------- MIDDLEWARE ------------------- */
+expressServer.use(middleware.logger);
 expressServer.use(middleware.limitRequestSize);
 expressServer.use(middleware.forceHttps);
 expressServer.use(middleware.serveStatic);
 expressServer.use(middleware.cookieParser);
+expressServer.use(middleware.errorLogger);
 /* ------------------- MIDDLEWARE END ------------------- */
 
 /* ------------------- ROUTES ------------------- */
+expressServer.use("/login", loginRoutes);
+expressServer.use("/signup", signupRoutes);
+
+
+expressServer.get("/api/users", async (req, res) => { // DEV
+    res.send(await require("./controllers/userController").getUsers());
+});
+expressServer.get("/api/passwords", async (req, res) => { // DEV
+    res.send(await require("./controllers/passwordController").getPasswords())
+});
 /* ------------------- ROUTES END ------------------- */
 
 /* ------------------- SERVER LISTENING ------------------- */
-// Http listen on port
-httpServer.listen(process.env.HTTP_PORT, process.env.HTTP_HOSTNAME, () => {
-    console.log(`HTTP Express Server listening on port ${process.env.HTTP_PORT}!`);
-});
+// Connect to DB
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => {
+        console.log("Connected to DB");
 
-// Https listen on port
-httpsServer.listen(process.env.HTTPS_PORT, process.env.HTTPS_HOSTNAME, () => {
-    console.log(`HTTPS Express Server listening on port ${process.env.HTTPS_PORT}!`);
-});
+        // Http listen on port
+        httpServer.listen(process.env.HTTP_PORT, process.env.HTTP_HOSTNAME, () => {
+            console.log(`HTTP Express Server listening on port ${process.env.HTTP_PORT}!`);
+        });
+
+        // Https listen on port
+        httpsServer.listen(process.env.HTTPS_PORT, process.env.HTTPS_HOSTNAME, () => {
+            console.log(`HTTPS Express Server listening on port ${process.env.HTTPS_PORT}!`);
+        });
+    }).catch((e) => {
+        console.error(e);
+    })
 /* ------------------- SERVER LISTENING END ------------------- */
