@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Explore Recipes</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="./js/request.js" defer></script>
+    <script src="./js/verification.js" defer></script>
 </head>
 <body>
     <div class="explore">
@@ -14,20 +16,20 @@
         <h1>Breakfast Recipes</h1>
     </div>
     <div class="breakfastpics slideIn">
-        <div class="bbox1"></div>
-        <div class="bbox2"></div>
-        <div class="bbox3"></div>
+        <div class="bbox1" id="bbox1"></div>
+        <div class="bbox2" id="bbox2"></div>
+        <div class="bbox3" id="bbox3"></div>
     </div>
     <br>
     <div class="brecipebuttons slideIn">
         <div class="b1">
-        <button>NAME1'S Recipe</button>
+        <button id="b1"></button>
         </div>
         <div class="b2">
-        <button>Name2'S Recipe</button>
+        <button id="b2"></button>
         </div>
         <div class="b3">
-        <button>Name3's Recipe</button>
+        <button id="b3"></button>
         </div>
     </div>
 
@@ -37,20 +39,20 @@
         <h1>Lunch Recipes</h1>
     </div>
     <div class="lunchpics">
-        <div class="lbox1"></div>
-        <div class="lbox2"></div>
-        <div class="lbox3"></div>
+        <div class="lbox1" id="lbox1"></div>
+        <div class="lbox2" id="lbox2"></div>
+        <div class="lbox3" id="lbox3"></div>
     </div>
     <br>
     <div class="lrecipebuttons slideIn">
         <div class="l1">
-            <button>NAME1'S Recipe</button>
+            <button id="l1"></button>
         </div>
         <div class="l2">
-            <button>Name2'S Recipe</button>
+            <button id="l2"></button>
         </div>
         <div class="l3">
-            <button>Name3's Recipe</button>
+            <button id="l3"></button>
         </div>
     </div>
 
@@ -60,22 +62,23 @@
         <h1>Dinner Recipes</h1>
     </div>
     <div class="dinnerpics slideIn">
-        <div class="dbox1"></div>
-        <div class="dbox2"></div>
-        <div class="dbox3"></div>
+        <div class="dbox1" id="dbox1"></div>
+        <div class="dbox2" id="dbox2"></div>
+        <div class="dbox3" id="dbox3"></div>
     </div>
     <br>
     <div class="drecipebuttons slideIn">
         <div class="d1">
-            <button>NAME1'S Recipe</button>
+            <button id="d1"></button>
         </div>
         <div class="d2">
-            <button>Name2'S Recipe</button>
+            <button id="d2"></button>
         </div>
         <div class="d3">
-            <button>Name3's Recipe</button>
+            <button id="d3"></button>
         </div>
     </div>
     </div>
+    <script src="./js/exploreMeals.js" defer></script>
 </body>
 </html>

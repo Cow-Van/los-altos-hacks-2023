@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Share Your Recipes</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="./js/request.js" defer></script>
+    <script src="./js/verification.js" defer></script>
 </head>
 <body>
     <div class="addcontainer">
@@ -16,33 +18,34 @@
             <label for="dropdown-menu">What meal of the day is this?</label>
             <br>
             <select id="dropdown-menu" class="inputs">
-                <option value="option1">Breakfast</option>
-                <option value="option2">Lunch</option>
-                <option value="option3">Dinner</option>
-                <option value="option4">Dessert</option>
+                <option value="Breakfast">Breakfast</option>
+                <option value="Lunch">Lunch</option>
+                <option value="Dinner">Dinner</option>
+                <option value="Dessert">Dessert</option>
             </select>
         </div>
         <div class="q2" required>
             <br>
             <div>What are the ingredients/tools and how much of them do you need? (Example: Bananas - 2, Milk - 1 pint, Blender)</div>
-                <label for="answer-input">Enter your answer:</label>
-                <textarea id="answer-input" name="answer" rows="4"></textarea>
+                <label for="answer-input1">Enter your answer:</label>
+                <textarea id="answer-input1" name="answer" rows="4"></textarea>
             </div>
         <div class="q3" required>
             <br>
             <div>What is the procedure to make this meal? (Example: 1. Chop bananas; 2. Pour milk into the blender...)</div>
-                <label for="answer-input">Enter your answer:</label>
-                <textarea id="answer-input" name="answer" rows="4"></textarea>
+                <label for="answer-input2">Enter your answer:</label>
+                <textarea id="answer-input2" name="answer" rows="4"></textarea>
             </div>
         <div class="q4"required>
         <br>
-        <form>
+        <form id="image-form" action="/api/recipes/upload" method="POST" enctype="multipart/form-data">
             <label for="image-input">Upload an image of the finished product!</label><br>
-            <input type="file" id="image-input" accept="image/*">
+            <input type="file" id="image-input" name="image" accept="image/*">
         </form> 
         </div> 
-        <button>+</button>
+        <button type="submit" onclick="submit()">+</button>
         </div>        
     </div>
+    <script src="./js/addRecipes.js" defer></script>
 </body>
 </html>

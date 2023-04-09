@@ -8,7 +8,7 @@ async function onLoad() {
     const token = await getToken();
 
     if (!token) {
-        // return window.location.replace("/login.html");
+        return window.location.replace("/login.html");
     }
 
     const res = await getData("https://localhost/api/self/", {
