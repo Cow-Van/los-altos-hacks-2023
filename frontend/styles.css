@@ -80,6 +80,7 @@ p {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-color: #30d47a28;
 }
 
 .homepagebox {
@@ -254,7 +255,7 @@ p {
     align-items: center;
 }
 
-.addremindersbottom button {
+.addremindersbottom button, .addcontainer button {
     border: none;
      background-color: #3CB371;
     padding: 10px 20px;
@@ -264,9 +265,13 @@ p {
     opacity: 0.8;
 }
 
-.addremindersbottom button:hover {
+.addremindersbottom button:hover, .addcontainer button:hover {
     opacity: 1;
     cursor: pointer;
+}
+
+.addcontainer button{
+    margin-top: 20px;
 }
 
 .icon {
@@ -330,6 +335,13 @@ textarea {
   border: 1px solid #ccc;
   background-color: #fff8f86e;
   padding: 10px;
+}
+
+.q1, .q2, .q3, .q4 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 
