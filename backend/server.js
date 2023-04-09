@@ -30,7 +30,6 @@ expressServer.use(middleware.limitRequestSize);
 expressServer.use(middleware.forceHttps);
 expressServer.use(middleware.serveStatic);
 expressServer.use(middleware.cookieParser);
-expressServer.use(middleware.errorLogger);
 /* ------------------- MIDDLEWARE END ------------------- */
 
 /* ------------------- ROUTES ------------------- */

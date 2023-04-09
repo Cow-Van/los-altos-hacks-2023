@@ -18,17 +18,11 @@ const forceHttps = (req, res, next) => {
     next();
 }
 
-// Logs errors
-const errorLogger = (err, req, res, next) => {
-    console.error(err.stack);
-    return res.status(500).send(err.message);
-} 
 
 module.exports = {
     logger: logger,
     limitRequestSize: express.json({ limit: "1mb" }), // Limits requests to 1MB
     forceHttps: forceHttps,
-    serveStatic: express.static(path.join(__dirname, "public")), // Set up static HTML site
+    serveStatic: express.static(path.join(path.dirname(path.dirname(__dirname)), "frontend")), // Set up static HTML site
     cookieParser: cookieParser(), // Allow for access to cookies in request header
-    errorLogger: errorLogger,
 }

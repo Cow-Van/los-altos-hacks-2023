@@ -7,20 +7,34 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
     const { username, password } = req.body;
+    let user;
 
-    const user = await findUserByUsername(username);
-
-    if (!user) {
-        return res.status(400).send("Invalid username and password");
+    try {
+        user = await findUserByUsername(username);
+    } catch (e) {
+        switch (e.name) {
+            case "InvalidUsernameError":
+                return res.status(400).send({ description: "Invalid username and password" });
+            default:
+                console.error(e.stack);
+                return res.status(500).send({ description: e.message });
+        }
     }
 
-    const pwd = await getPassword(user);
-    const result = await bcrypt.compare(password, pwd.hash);
+    let pwd;
+    let result;
+    try {
+        pwd = await getPassword(user);
+        result = await bcrypt.compare(password, pwd.hash);
+    } catch (e) {
+        console.error(e.stack);
+        return res.status(500).send({ description: e.message });
+    }
 
     if (result) {
-        return res.status(200).send("Logged in");
+        return res.status(200).send({ description: "Logged in" });
     } else {
-        return res.status(400).send("Invalid username and password");
+        return res.status(400).send({ description: "Invalid username and password" });
     }
 });
 

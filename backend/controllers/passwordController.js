@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const Password = require("../models/passwordModel");
 
-Password.deleteMany().then((res) => { // DEV
-    console.log(res.deletedCount);
-});
+// Password.deleteMany().then((res) => { // DEV
+//     console.log(res.deletedCount);
+// });
 
 const getPasswords = async () => { // DEV
     return await Password.find();

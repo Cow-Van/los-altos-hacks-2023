@@ -1,13 +1,12 @@
 const { createPassword } = require("./passwordController");
-const { MissingFieldsError } = require("../util/error");
+const { MissingFieldsError, InvalidUsernameError } = require("../util/error");
 const User = require("../models/userModel");
 
-User.deleteMany().then((res) => { // DEV
-    console.log(res.deletedCount);
-});
+// User.deleteMany().then((res) => { // DEV
+//     console.log(res.deletedCount);
+// });
 
 const getUsers = async () => {
-    console.log(await User.find().sort({ createdAt: -1 }));
     return await User.find().sort({ createdAt: -1 });
 }
 
@@ -58,7 +57,7 @@ const findUserByUsername = async (username) => {
     const user = await User.findOne({ username: username });
 
     if (!user) {
-        throw Error("No such user with username: username");
+        throw InvalidUsernameError(`No such user with username: ${username}`);
     }
 
     return user;
