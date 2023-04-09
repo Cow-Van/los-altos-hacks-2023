@@ -2,6 +2,7 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const { findUserByUsername } = require("../controllers/userController");
 const { getPassword } = require("../controllers/passwordController");
+const { createAccessToken } = require("../controllers/accessTokenController");
 
 const router = express.Router();
 
@@ -32,7 +33,18 @@ router.post("/", async (req, res) => {
     }
 
     if (result) {
-        return res.status(200).send({ description: "Logged in" });
+        const { accessToken, refreshToken } = await createAccessToken();
+
+        res.cookie("refresh_token", refreshToken.token), {
+            domain: process.env.DOMAIN,
+            path: "/refresh_token",
+            secure: true,
+            httpOnly: true,
+            sameSite: "strict",
+            maxAge: parseInt(process.env.REFRESH_TOKEN_EXPIRE_TIME),
+        };
+
+        return res.status(200).send({ "credential": accessToken.token });
     } else {
         return res.status(400).send({ description: "Invalid username and password" });
     }

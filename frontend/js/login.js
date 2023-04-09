@@ -1,27 +1,28 @@
-function login() {
+if (typeof getToken === "function" && typeof getData === "function") {
+    onLoad();
+} else {
+    window.addEventListener("load", onLoad);
+}
+
+async function onLoad() {
+    const token = await getToken();
+
+    console.log(token);
+
+    if (token) {
+        window.location.replace("/");
+    }
+}
+
+async function login() {
     const data = {
         username: document.getElementById("username").value,
         password: document.getElementById("password").value,
     };
 
-    const options = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data),
-    };
+    const res = await postData("/login", data);
+    const newData  = await res.json();
 
-    fetch("/login", options)
-        .then(async res => {
-            if (!res.ok) {
-                throw new Error(res.statusText);
-            }
-
-            return await res.json();
-        }).then(data => {
-            console.log(data);
-        }).catch(e => {
-            console.error("Error: ", e);
-        });
+    globalThis.token = newData.credential;
+    window.location.replace("/");
 }
