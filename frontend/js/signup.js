@@ -1,4 +1,18 @@
-function signUp() {
+if (typeof getToken === "function" && typeof getData === "function") {
+    onLoad();
+} else {
+    window.addEventListener("load", onLoad);
+}
+
+async function onLoad() {
+    const token = await getToken();
+
+    if (token) {
+        window.location.replace("/");
+    }
+}
+
+async function signUp() {
     const data = {
         username: document.getElementById("username").value,
         password: document.getElementById("password").value,
@@ -7,24 +21,13 @@ function signUp() {
         email: document.getElementById("email").value,
     };
 
-    const options = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data),
-    };
+    const res = await postData("/signup", data);
 
-    fetch("/signup", options)
-        .then(async res => {
-            if (!res.ok) {
-                throw new Error(res.statusText);
-            }
+    if (!res.ok) {
+        throw new Error(res.statusText);
+    }
 
-            return await res.json();
-        }).then(data => {
-            console.log(data);
-        }).catch(e => {
-            console.error("Error: ", e);
-        });
+    const userData = await res.json();
+
+    console.log(userData);
 }
