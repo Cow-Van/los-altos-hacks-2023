@@ -28,11 +28,16 @@ new Chart(ctx, {
   },
   options: {
     scales: {
-        y: [{
+        y: {
             ticks: {
-              stepSize: 1
+              min: 0,
+              callback: function(value, index, values) {
+                if (Math.floor(value) === value) {
+                  return value;
+                }
+              }
             }
-          }]
+          }
     }
   }
 });
