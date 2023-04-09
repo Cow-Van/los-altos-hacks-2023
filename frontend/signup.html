@@ -5,19 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up Page</title>
-    <link rel="stylesheet" type="text/css" href="styles.css"/> 
+    <link rel="stylesheet" type="text/css" href="./styles.css"/> 
 </head>
 <body>
     <div class="signuppagecontainer">
         <div class="signuppagebox slideIn">
             <h1>Sign Up</h1>
-            <input type="text" placeholder="First Name"/>
-            <input type="text" placeholder="Last Name"/>
-            <input type="email" placeholder="Email"/>
-            <input type="text" placeholder="Username"/>
-            <input type="text" placeholder="Password"/>
-            <button>Create Account</button>
+            <input type="text" id="firstName" placeholder="First Name"/>
+            <input type="text" id="lastName" placeholder="Last Name"/>
+            <input type="email" id="email" placeholder="Email"/>
+            <input type="text" id="username" placeholder="Username"/>
+            <input type="password" id="password" placeholder="Password"/>
+            <button onclick="signUp()">Create Account</button>
         </div>
     </div>
+
+    <script src="./js/signup.js" async defer></script>
 </body>
 </html>

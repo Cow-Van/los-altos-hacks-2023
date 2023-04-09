@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share Your Recipes</title>
+</head>
+    <link rel="stylesheet" href="styles.css">
+<body>
+    <div class="addcontainer">
+        <div class="add">
+        <h1>Create and Share Your Recipes 😋🍽️</h1>
+        <div class="q1" required>
+            <label for="dropdown-menu">What meal of the day is this?</label>
+            <br>
+            <select id="dropdown-menu">
+                <option value="option1">Breakfast</option>
+                <option value="option2">Lunch</option>
+                <option value="option3">Dinner</option>
+                <option value="option4">Dessert</option>
+            </select>
+        </div>
+        <div class="q2" required>
+            <br>
+            <div>What are the ingredients/tools and how much of them do you need? (Example: Bananas - 2, Milk - 1 pint, Blender)</div>
+                <label for="answer-input">Enter your answer:</label>
+                <textarea id="answer-input" name="answer" rows="4"></textarea>
+            </div>
+        <div class="q3" required>
+            <br>
+            <div>What is the procedure to make this meal? (Example: 1. Chop bananas; 2. Pour milk into the blender...)</div>
+                <label for="answer-input">Enter your answer:</label>
+                <textarea id="answer-input" name="answer" rows="4"></textarea>
+            </div>
+        <div class="q4"required>
+        <br>
+        <form>
+            <label for="image-input">Upload an image of the finished product!</label><br>
+            <input type="file" id="image-input" accept="image/*">
+        </form> 
+        </div> 
+        </div>        
+    </div>
+</body>
+</html>
