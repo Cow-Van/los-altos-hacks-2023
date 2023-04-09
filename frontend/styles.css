@@ -116,3 +116,46 @@ p {
     opacity: 1;
 }
 
+.helplinescontainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; 
+    background-color: #30d47a64;
+}
+
+/*Helpline Formatting*/
+.helplineslist{
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.helplineslist button{
+    border-radius: 0.5em;
+    padding: 15px 40px;
+    background-color: #3CB371;
+    transition: 0.3s;
+    opacity: 0.8;
+    border: 2px solid green;
+}
+
+.helplineslist button:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+
+.homeButton {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.homeButton button{
+    border-radius: 0.5em;
+    padding: 10px 20px;
+    background-color: #3CB371;
+    transition: 0.3s;
+    opacity: 0.8;
+}
