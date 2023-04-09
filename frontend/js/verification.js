@@ -15,7 +15,7 @@ async function getToken() {
     return data.credential;
 }
 
-function getCookie(name) {
+function getCookie(name) { // DEV
     let dc = document.cookie;
     let prefix = name + "=";
     let begin = dc.indexOf("; " + prefix);

@@ -15,7 +15,7 @@ const getPassword = async (user) => {
         throw Error("No such user");
     }
 
-    return await Password.findOne({ user: user.id });
+    return await Password.findOne({ user: user._id });
 }
 
 const createPassword = async (user, password) => {

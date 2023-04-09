@@ -1,6 +1,7 @@
 const express = require("express");
-const { getAccessTokenByRefreshToken, isAccessTokenValid, createAccessToken } = require("../controllers/accessTokenController");
-const { isRefreshTokenValid } = require("../controllers/refreshTokenController");
+const { getAccessTokenByRefreshToken, isAccessTokenValid, createAccessToken, deleteAccessToken, getAccessTokens } = require("../controllers/accessTokenController");
+const { isRefreshTokenValid, deleteRefreshToken, getRefreshTokens } = require("../controllers/refreshTokenController");
+const { getUser } = require("../controllers/userController");
 
 const router = express.Router();
 
@@ -18,7 +19,10 @@ router.get("/", async (req, res) => {
         return res.status(401).send({ description: "Access token invalid" });
     }
 
-    const { accessToken, refreshToken } = await createAccessToken();
+    await deleteRefreshToken(oldRefreshToken.token);
+    await deleteAccessToken(oldAccessToken.token);
+
+    const { accessToken, refreshToken } = await createAccessToken(await (getUser(oldAccessToken.user)));
 
     res.cookie("refresh_token", refreshToken.token), {
         domain: process.env.DOMAIN,
@@ -28,7 +32,6 @@ router.get("/", async (req, res) => {
         sameSite: "strict",
         maxAge: parseInt(process.env.REFRESH_TOKEN_EXPIRE_TIME),
     };
-
     return res.status(200).send({ "credential": accessToken.token });
 });
 

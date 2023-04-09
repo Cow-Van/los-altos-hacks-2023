@@ -2,7 +2,8 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const { findUserByUsername } = require("../controllers/userController");
 const { getPassword } = require("../controllers/passwordController");
-const { createAccessToken } = require("../controllers/accessTokenController");
+const { createAccessToken, isAccessTokenValid, getAccessTokens, deleteAccessToken, getAccessTokenByUserId } = require("../controllers/accessTokenController");
+const { getRefreshToken, deleteRefreshToken } = require("../controllers/refreshTokenController");
 
 const router = express.Router();
 
@@ -33,7 +34,15 @@ router.post("/", async (req, res) => {
     }
 
     if (result) {
-        const { accessToken, refreshToken } = await createAccessToken();
+        const dbAccessToken = await getAccessTokenByUserId(user._id);
+        if (dbAccessToken) {
+            await deleteAccessToken(dbAccessToken.token);
+            await deleteRefreshToken(dbAccessToken.refresh_token);
+        }
+
+        await deleteAccessToken();
+
+        const { accessToken, refreshToken } = await createAccessToken(user);
 
         res.cookie("refresh_token", refreshToken.token), {
             domain: process.env.DOMAIN,

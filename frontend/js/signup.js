@@ -8,7 +8,7 @@ async function onLoad() {
     const token = await getToken();
 
     if (token) {
-        window.location.replace("/");
+        return window.location.replace("/");
     }
 }
 
@@ -21,10 +21,10 @@ async function signUp() {
         email: document.getElementById("email").value,
     };
 
-    const res = await postData("/signup", data);
+    const res = await postData("/signup", { data: data });
 
     if (!res.ok) {
-        throw new Error(res.statusText);
+        throw new Error((await res.json()).description);
     }
 
     const userData = await res.json();

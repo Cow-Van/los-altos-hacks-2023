@@ -12,6 +12,7 @@ const middleware = require("./util/middleware");
 const loginRoutes = require("./routes/login");
 const signupRoutes = require("./routes/signup");
 const refreshTokenRoutes = require("./routes/refreshToken");
+const apiRoutes = require("./routes/api/api");
 /* ------------------- IMPORTS END ------------------- */
 
 /* ------------------- CONSTANTS ------------------- */
@@ -38,6 +39,7 @@ expressServer.use(middleware.cookieParser);
 expressServer.use("/login", loginRoutes);
 expressServer.use("/signup", signupRoutes);
 expressServer.use("/refresh_token", refreshTokenRoutes);
+expressServer.use("/api", apiRoutes);
 
 expressServer.get("/api/users", async (req, res) => { // DEV
     res.send(await require("./controllers/userController").getUsers());

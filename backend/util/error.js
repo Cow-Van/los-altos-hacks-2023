@@ -12,7 +12,15 @@ class InvalidUsernameError extends Error {
     }
 }
 
+class UserNotFoundError extends Error {
+    constructor (message) {
+        super(message);
+        this.name = "UserNotFoundError";
+    }
+}
+
 module.exports = {
     MissingFieldsError,
     InvalidUsernameError,
+    UserNotFoundError,
 }

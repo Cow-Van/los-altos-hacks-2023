@@ -1,5 +1,6 @@
+const mongoose = require("mongoose");
 const { createPassword } = require("./passwordController");
-const { MissingFieldsError, InvalidUsernameError } = require("../util/error");
+const { MissingFieldsError, InvalidUsernameError, UserNotFoundError } = require("../util/error");
 const User = require("../models/userModel");
 
 // User.deleteMany().then((res) => { // DEV
@@ -12,16 +13,20 @@ const getUsers = async () => {
 
 const getUser = async (id) => {
     if (!mongoose.Types.ObjectId.isValid(id)) {
-        return Error("No such user");
+        return new UserNotFoundError("No such user");
     }
 
     const user = await User.findById(id);
 
     if (!user) {
-        return Error("No such user");
+        return new UserNotFoundError("No such user");
     }
 
     return user
+}
+
+const isValidUserId = (id) => {
+    return mongoose.Types.ObjectId.isValid(id);
 }
 
 const createUser = async (firstName, lastName, username, password, email) => {
@@ -48,7 +53,7 @@ const createUser = async (firstName, lastName, username, password, email) => {
     }
 
     const user = await User.create({ first_name: firstName, last_name: lastName, username: username, email: email });
-    await createPassword(user.id, password);
+    await createPassword(user._id, password);
 
     return user;
 }
@@ -66,6 +71,7 @@ const findUserByUsername = async (username) => {
 module.exports = {
     getUsers,
     getUser,
+    isValidUserId,
     createUser,
     findUserByUsername,
 }

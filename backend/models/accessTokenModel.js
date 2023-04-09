@@ -9,14 +9,15 @@ const accessTokenSchema = new Schema({
         unique: true,
     },
     refresh_token: {
-        type: Schema.Types.ObjectId,
-        ref: "RefreshToken",
+        type: String,
         required: true,
         unique: true,
     },
     user: {
         type: Schema.Types.ObjectId,
         ref: "User",
+        required: true,
+        unique: true,
     },
     created_at: {
         type: Date,

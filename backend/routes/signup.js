@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
                 res.status(500);
             
             console.error(e.stack);
-            return res.send(e.message);
+            return res.send({ description: e.message });
         }
     }
 });
