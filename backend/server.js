@@ -28,6 +28,7 @@ const httpsServer = https.createServer(credentials, expressServer);
 expressServer.use(middleware.logger);
 expressServer.use(middleware.limitRequestSize);
 expressServer.use(middleware.forceHttps);
+expressServer.use(middleware.cors);
 expressServer.use(middleware.serveStatic);
 expressServer.use(middleware.cookieParser);
 /* ------------------- MIDDLEWARE END ------------------- */

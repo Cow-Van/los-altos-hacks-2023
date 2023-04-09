@@ -57,7 +57,7 @@ const findUserByUsername = async (username) => {
     const user = await User.findOne({ username: username });
 
     if (!user) {
-        throw InvalidUsernameError(`No such user with username: ${username}`);
+        throw new InvalidUsernameError(`No such user with username: ${username}`);
     }
 
     return user;
