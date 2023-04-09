@@ -203,3 +203,19 @@ p {
     background: none;
     border: 0;
 }
+
+canvas {
+    width: 900px !important; /* set the width of the canvas */
+    height: 500px !important; /* set the height of the canvas */
+    margin: 0 auto;
+  }
+
+  .progresspagecontainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    background-color: #30d47a17;
+  }
