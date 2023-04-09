@@ -106,7 +106,7 @@ p {
     border: 0.5px solid gray;
 }
 
-.homepageoptions button:hover .explore button:hover {
+.homepageoptions button:hover, .explore button:hover {
     text-align: center;
     opacity: 1;
     cursor: pointer;
